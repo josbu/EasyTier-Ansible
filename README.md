@@ -70,3 +70,10 @@ ansible-playbook restart_easytier.yml -i nodes.ini --extra-var "dest_host=core"
 ```
 ansible-playbook build_easytier_config.yml -i nodes.ini --extra-var "dest_host=core"
 ```
+
+## chore
+
+可以通过 Ansible 自定义命令执行任意命令。
+```
+ansible -i nodes.ini core -a 'pgrep easytier'
+```
