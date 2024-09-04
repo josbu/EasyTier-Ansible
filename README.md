@@ -6,9 +6,15 @@ EasyTier-Ansible 工程，方便批量管理 EasyTier 节点。
 EasyTier is a simple, safe and decentralized VPN networking solution implemented with the Rust language and Tokio framework.
 一个简单、安全、去中心化的内网穿透 VPN 组网方案，使用 Rust 语言和 Tokio 框架实现。
 
-
 - [GitHub@EasyTier](https://github.com/EasyTier/EasyTier)
 - [EasyTier Official Website](https://www.easytier.top/)
+
+# 关于 Ansible
+Ansible is a radically simple IT automation system. It handles configuration management, application deployment, cloud provisioning, ad-hoc task execution, network automation, and multi-node orchestration. Ansible makes complex changes like zero-downtime rolling updates with load balancers easy.
+Ansible是一个非常简单的IT自动化系统。它处理配置管理、应用程序部署、云配置、ad-hoc任务执行、网络自动化和多节点编排。Ansible使使用负载均衡器进行零停机滚动更新等复杂更改变得容易。
+
+- [GitHub@Ansible](https://github.com/ansible/ansible)
+- [Ansible](https://ansible.com/)
 
 # 部署模式
 
