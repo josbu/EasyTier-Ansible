@@ -1,0 +1,18 @@
+# node_info
+hostname: node1
+node_uuid: uuid
+
+# port_listen
+port1: 11010 #udp\tcp
+port2: 11011 #wg\ws
+port3: 11012 #wss
+
+# peers
+peers:
+  - wss://xxxx:33206/
+  - wss://xxxx2:33206/
+proxy_networks: []
+# custom_flags
+latency_first: "true"
+enable_exit_node: "false"
+disable_p2p: "false"

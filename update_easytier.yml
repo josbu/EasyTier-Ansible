@@ -1,0 +1,30 @@
+---
+- name: Upgrade the Easytier program version of the node
+  hosts: "{{ dest_host }}"
+
+  tasks:
+    - name: Send a new version of the program to the target node
+      copy:
+        src: "update/easytier-linux-{{ arch }}.zip"
+        dest: "/opt/easytier/easytier-linux-{{ arch }}.zip"
+
+    - name: Extract the new version of Easytier.zip
+      ansible.builtin.unarchive:
+        src: "/opt/easytier/easytier-linux-{{ arch }}.zip"
+        dest: "/opt/easytier/"
+        remote_src: yes
+
+    - name: Backup old versions of Easytier program
+      shell: "mv /opt/easytier/easytier-core /opt/easytier/easytier-core.backup && mv /opt/easytier/easytier-cli /opt/easytier/easytier-cli.backup"
+
+    - name: Update Easytier to a new version
+      shell: "mv /opt/easytier/easytier-linux-{{ arch }}/* /opt/easytier/"
+
+    - name: Clean up temporary files
+      shell: "rm -rf /opt/easytier/easytier-linux-{{ arch }}*"
+    - name: Check Easytier version
+      shell: "/opt/easytier/easytier-core -V"
+      register: shell_result
+
+    - debug:
+        msg: "Easytier Version: {{ shell_result.stdout_lines }}"

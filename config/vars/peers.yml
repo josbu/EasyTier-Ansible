@@ -1,0 +1,3 @@
+# peer 信息
+peers:
+  - wss://ws:port/

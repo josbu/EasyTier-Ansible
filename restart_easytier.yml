@@ -1,0 +1,14 @@
+---
+- name: Restart the Easytier program of the node
+  hosts: "{{ dest_host }}"
+
+  tasks:
+    - name: Restart the Easytier program of the node
+      shell: "systemctl restart easytier"
+
+    - name: Check the operational status of Easytier
+      shell: "pgrep easytier-core"
+      register: shell_result
+
+    - debug:
+        msg: "Easytier PID: {{ shell_result.stdout_lines }}"

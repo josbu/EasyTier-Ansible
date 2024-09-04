@@ -1,0 +1,42 @@
+instance_name = "{{ hostname }}"
+hostname = "{{ hostname }}"
+instance_id = "{{ node_uuid }}"
+ipv4 = "{{ easytier_ip }}"
+dhcp = false
+listeners = [
+    "tcp://0.0.0.0:{{ port1 }}",
+    "udp://0.0.0.0:{{ port1 }}",
+    "wg://0.0.0.0:{{ port2 }}",
+    "ws://0.0.0.0:{{ port2 }}/",
+    "wss://0.0.0.0:{{ port3 }}/",
+]
+exit_nodes = []
+rpc_portal = "127.0.0.1:15888"
+
+[network_identity]
+network_name = "{{ network_name }}"
+network_secret = "{{ network_secret }}"
+
+{% for peer in peers %}
+[[peer]]
+uri = "{{ peer }}"
+{% endfor %}
+
+{% for proxy_network in proxy_networks %}
+[[proxy_network]]
+cidr = "{{ proxy_network }}"
+{% endfor %}
+
+[flags]
+default_protocol = "{{ default_protocol }}"
+dev_name = "{{ dev_name }}"
+enable_encryption = {{ enable_encryption }}
+enable_ipv6 = {{ enable_ipv6 }}
+mtu = {{ mtu }}
+latency_first = {{ latency_first }}
+enable_exit_node = {{ enable_exit_node }}
+no_tun = {{ no_tun }}
+use_smoltcp = {{ use_smoltcp }}
+foreign_network_whitelist = "{{ foreign_network_whitelist }}"
+disable_p2p = {{ disable_p2p }}
+relay_all_peer_rpc = {{ relay_all_peer_rpc }}

@@ -1,0 +1,4 @@
+# 网络信息
+network_name: "net1"
+network_secret: "Huawei12#$"
+foreign_network_whitelist: "net1"

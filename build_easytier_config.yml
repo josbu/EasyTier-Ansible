@@ -1,0 +1,12 @@
+---
+- name: Build Easytier node configuration file
+  hosts: "{{ dest_host }}"
+  vars_files:
+    - "config/vars/{{ easytier_ip }}.yml"
+    - "config/vars/network.yml"
+    - "config/vars/flags.yml"
+  tasks:
+    - name: Backup Easytier Config
+      shell: "mv /opt/easytier/config.toml /opt/easytier/config.toml.backup"
+    - name: Build Easytier Config
+      template: src=config/easytier.toml.j2 dest=/opt/easytier/config.toml

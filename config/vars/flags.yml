@@ -1,0 +1,9 @@
+# 通用 flags 信息
+default_protocol: "wss"
+dev_name: "tun0"
+enable_encryption: "true"
+enable_ipv6: "true"
+mtu: 1380
+no_tun: "false"
+use_smoltcp: "false"
+relay_all_peer_rpc: "false"
