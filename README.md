@@ -17,6 +17,10 @@ EasyTier is a simple, safe and decentralized VPN networking solution implemented
 - 配置信息：config.toml
 - 节点信息配置：nodes.ini
 
+# 快速开始
+
+需自行根据服务器操作系统安装 Ansible。
+
 # 脚本介绍
 
 build_easytier_config.yml ：生成 easytier 配置文件
