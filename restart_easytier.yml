@@ -1,13 +1,15 @@
 ---
 - name: Restart the Easytier program of the node
   hosts: "{{ dest_host }}"
+  vars_files:
+    - "config/vars/network.yml" # network_name
 
   tasks:
     - name: Restart the Easytier program of the node
-      shell: "systemctl restart easytier"
+      shell: "systemctl restart easytier@{{ network_name }}"
 
     - name: Check the operational status of Easytier
-      shell: "pgrep easytier-core"
+      shell: "pgrep easytier-core@{{ network_name }}"
       register: shell_result
 
     - debug:
