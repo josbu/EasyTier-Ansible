@@ -1,8 +1,29 @@
 ---
 - name: Upgrade the Easytier program version of the node
   hosts: "{{ dest_host }}"
+  vars: 
+    arch: "{{ ansible_facts['architecture'] }}"
 
   tasks:
+    - name: Check if easytier folder is exists
+      stat:
+        path: "/opt/easytier"
+      register: easytier_folder
+    - name: Create easytier folder if not exists
+      file:
+        path: "/opt/easytier"
+        state: directory
+      when: not easytier_folder.stat.exists
+    - name: Check if unzip is installed
+      command: "which unzip"
+      register: unzip_installed
+      ignore_errors: true
+    - name: Install unzip if not installed
+      apt:
+        name: unzip
+        state: present
+      when: unzip_installed.rc != 0
+
     - name: Send a new version of the program to the target node
       copy:
         src: "update/easytier-linux-{{ arch }}.zip"
@@ -16,6 +37,7 @@
 
     - name: Backup old versions of Easytier program
       shell: "mv /opt/easytier/easytier-core /opt/easytier/easytier-core.backup && mv /opt/easytier/easytier-cli /opt/easytier/easytier-cli.backup"
+      ignore_errors: true
 
     - name: Update Easytier to a new version
       shell: "mv /opt/easytier/easytier-linux-{{ arch }}/* /opt/easytier/"
@@ -28,3 +50,12 @@
 
     - debug:
         msg: "Easytier Version: {{ shell_result.stdout_lines }}"
+
+    - name: Install easytier@.service
+      copy:
+        src: easytier@.service
+        dest: "/etc/systemd/system/easytier@.service"
+    
+    - name: Reload systemd daemon
+      systemd: 
+        daemon_reload: yes

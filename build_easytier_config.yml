@@ -8,5 +8,7 @@
   tasks:
     - name: Backup Easytier Config
       shell: "mv /opt/easytier/config.toml /opt/easytier/config.toml.backup"
-    - name: Build Easytier Config
-      template: src=config/easytier.toml.j2 dest=/opt/easytier/config.toml
+    - name: Backup Corresponding Network Config
+      shell: "mv /opt/easytier/config/{{ network_name }}.conf /opt/easytier/config/{{ network_name }}.conf.backup"
+    - name: Build Corresponding Network Config
+      template: src=config/easytier.toml.j2 dest=/opt/easytier/config/{{ network_name }}.conf
