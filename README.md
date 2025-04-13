@@ -1,6 +1,10 @@
 # EasyTier-Ansible
 EasyTier-Ansible 工程，方便批量管理 EasyTier 节点。
 
+项目地址：
+- https://github.com/bh1xaq/EasyTier-Ansible
+- https://cnb.cool/hex/EasyTier-Ansible
+
 # 关于 EasyTier
 
 EasyTier is a simple, safe and decentralized VPN networking solution implemented with the Rust language and Tokio framework.
